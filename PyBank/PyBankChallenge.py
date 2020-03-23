@@ -1,12 +1,12 @@
 #import modules
 import os
 import csv
-# defile file
-file= os.path.join("budget_data.csv")
 
-# # Create the function
+# Create the function
 def analyze_budgets(file):
 
+    # Path to collect data
+    file = os.path.join("budget_data.csv")
 
     #establish variables and initial values
     total_months = 0
@@ -21,18 +21,18 @@ def analyze_budgets(file):
     changes = []
 
     # Read the CSV file
-    with open(file,"r") as data:
+    with open(file) as data:
         csvreader = csv.reader(data, delimiter = ",")
-        header = next(csvreader)
+        next(csvreader)
         
-        # Create the for loop to read the cvs file
+        # Create the for loop
         for row in csvreader:
             
             # set the location of the columns from the csv for those variables
             date = row[0]
             pl = int(row[1])
 
-            #To set the total values from the csv- add up total profit and count each month
+            #To set the total values from the csv
             total_profit += pl
             total_months += 1
 
@@ -78,6 +78,6 @@ def analyze_budgets(file):
         doc.write(analysis)
 
 # Create file path for csv import
-path = os.path.join("budget_data.csv")
+path = os.path.join("Resources", "budget_data.csv")
 # Run the function on the path
 analyze_budgets(path)
